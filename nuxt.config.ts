@@ -8,4 +8,11 @@ export default defineNuxtConfig({
             autoprefixer: {},
         },
     },
+    modules: [
+        // ...
+        '@pinia/nuxt',
+    ],
+    alias: {
+        '@hooks/*': '~/hooks/*',
+    },
 });
