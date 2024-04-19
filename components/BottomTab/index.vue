@@ -1,10 +1,10 @@
 <template>
   <div class="flex w-full justify-center">
     <div
-      class="flex w-fit backdrop-blur-md overflow-hidden rounded-[12px] min-h-[68px]"
+      class="flex w-fit backdrop-blur-md shadow-white overflow-hidden rounded-[12px] min-h-[68px]"
     >
       <div v-for="item in tab">
-        {{ item.title }}
+        <MenuItem :menu-item="item" />
       </div>
     </div>
   </div>
@@ -14,10 +14,6 @@
 const props = defineProps({
   tab: {
     default: [
-      {
-        title: 'Home',
-        content: '内容1',
-      },
       {
         title: 'Menu Navigator',
         content: '内容1',

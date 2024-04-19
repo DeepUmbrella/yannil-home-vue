@@ -6,5 +6,9 @@ export const useMenuStore = defineStore('menu', () => {
   const updateOpenStatus = (open: boolean) => {
     openStatus.value = open;
   };
-  return { openStatus, updateOpenStatus };
+  const triggerMenuOpenStatus = () => {
+    console.log('ddddd');
+    openStatus.value = !openStatus.value;
+  };
+  return { openStatus, updateOpenStatus, triggerMenuOpenStatus };
 });
