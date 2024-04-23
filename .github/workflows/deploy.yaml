@@ -20,7 +20,7 @@ jobs:
       PUBLISH_HOST: ${{ secrets.DOCKER_PASSWORD }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: log screts
         run: echo ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}
@@ -28,7 +28,7 @@ jobs:
       - name: Get version from package.json
         id: get_version
         run:
-          echo ::set-output name=version::$(node -e \
+          echo ::set-output name=version::$(node -e
           "console.log(require('./package.json').version)")
 
       - name: Build Docker image
@@ -42,7 +42,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push Docker image
         run:
-          docker push \
+          docker push
           ${{secrets.DOCKER_USERNAME}}/yannil-home:${{steps.get_version.outputs.version}}
 
   deploy:
