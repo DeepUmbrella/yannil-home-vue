@@ -11,24 +11,26 @@ on:
         required: true
         default: production
 
-
 jobs:
   build:
-    runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_KEY: ${{ secrets.DOCKER_USERNAME }}
+      PUBLISH_HOST: ${{ secrets.DOCKER_PASSWORD }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: log screts
         run: echo ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}
-        
+
       - name: Get version from package.json
         id: get_version
         run:
           echo ::set-output name=version::$(node -e \
           "console.log(require('./package.json').version)")
-        
+
       - name: Build Docker image
         run:
           docker build -t yannil-home:${{steps.get_version.outputs.version}} .
