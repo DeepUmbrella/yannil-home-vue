@@ -10,12 +10,10 @@ on:
         description: 'Environment to deploy'
         required: true
         default: production
-env:
-  DEPLOY_ENV: ${{ github.event.inputs.environment || 'production' }}
 
 jobs:
   build:
-    environment: ${{ env.DEPLOY_ENV }}
+    environment: ${{ github.event.inputs.environment || 'production' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -42,7 +40,7 @@ jobs:
           docker push ${{secrets.DOCKER_USERNAME}}/yannil-home:latest
 
   deploy:
-    environment: ${{ env.DEPLOY_ENV }}
+    environment: ${{ github.event.inputs.environment || 'production' }}
     runs-on: ubuntu-latest
     needs: build
     steps:
