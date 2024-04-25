@@ -17,6 +17,11 @@ export default {
         80: '80px',
         1024: '100px',
       },
+      colors: {
+        'green-light': '#00ff00',
+        purple: '#ff00ff',
+        orange: '#ffff00',
+      },
     },
   },
   plugins: [],
