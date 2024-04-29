@@ -7,8 +7,8 @@ definePageMeta({
 
 <template>
   <div class="relative h-full p-1">
-    <Button>ABOUT US</Button>
-    <Button variant="warning">CONTACT US</Button>
-    <Button variant="danger">BUTTON</Button>
+    <YlButton>ABOUT US</YlButton>
+    <YlButton variant="warning">CONTACT US</YlButton>
+    <YlButton variant="danger">BUTTON</YlButton>
   </div>
 </template>

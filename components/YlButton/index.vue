@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {} from 'vue';
-
 const vXy = {
   mounted: (el: HTMLElement) => {
     el.addEventListener('mousemove', (e) => {
@@ -11,21 +9,23 @@ const vXy = {
 };
 
 interface ButtonProps {
-  variant: 'primary' | 'warning' | 'danger';
-  size: 'large' | 'small' | 'normal';
+  variant?: 'primary' | 'warning' | 'danger';
+  size?: 'large' | 'small' | 'normal';
+  blink?: boolean;
 }
 const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'primary',
   size: 'large',
+  blink: false,
 });
 
-const buttonSpaces: Record<ButtonProps['size'], string> = {
+const buttonSpaces = {
   large: 'py-4 px-12',
   small: 'py-2 px-4',
   normal: 'py-3 px-8',
 };
 
-const variantColorMap: Record<ButtonProps['variant'], string> = {
+const variantColorMap = {
   primary: '#00ff00',
   warning: '#ffff00',
   danger: '#ff00ff',
@@ -37,7 +37,13 @@ const variantColorMap: Record<ButtonProps['variant'], string> = {
     href="#"
     :style="{ '--clr': variantColorMap[props.variant] }"
     class="button flex w-fit tracking-widest justify-center rounded-full relative bg-[#2d2d2d] text-slate-400"
-    :class="[buttonSpaces[props.size], props.variant]"
+    :class="[
+      buttonSpaces[props.size],
+      props.variant,
+      {
+        blink: props.blink,
+      },
+    ]"
     v-xy
   >
     <span>
@@ -56,6 +62,17 @@ const variantColorMap: Record<ButtonProps['variant'], string> = {
   span {
     position: relative;
     z-index: 1;
+  }
+  &.blink {
+    animation: blink 2s linear infinite;
+    &:hover {
+      &::before {
+        animation: none;
+      }
+    }
+    &::before {
+      animation: shadow-left-right 2s linear infinite;
+    }
   }
 
   &:hover {
@@ -85,6 +102,33 @@ const variantColorMap: Record<ButtonProps['variant'], string> = {
   }
   &:hover::before {
     opacity: 1;
+  }
+
+  @keyframes blink {
+    50% {
+      color: var(--clr);
+      text-shadow:
+        0 0 15px var(--clr),
+        0 0 45px var(--clr);
+    }
+  }
+
+  @keyframes shadow-left-right {
+    0% {
+      left: 0;
+      top: 0%;
+      opacity: 1;
+    }
+    50% {
+      top: 50%;
+      opacity: 0.5;
+      left: 50%;
+    }
+    100% {
+      top: 100%;
+      opacity: 0;
+      left: 100%;
+    }
   }
 }
 </style>
