@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps({});
+const props = defineProps();
 const emit = defineEmits(['submit', 'trigger']);
 const formVn = ref<HTMLFormElement | null>();
 onMounted(() => {

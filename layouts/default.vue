@@ -5,7 +5,10 @@ const { openStatus } = storeToRefs(menuStore);
 </script>
 
 <template>
-  <div class="w-full relative bg h-dvh bg-slate-900 bg-cover bg-no-repeat">
+  <div
+    class="__variable_4b71e2 __variable_501260 font-dmSans text-white text-opacity-80 h-full"
+  >
+    <YlHeader></YlHeader>
     <div
       class="w-full h-full flex flex-col"
       :class="{
@@ -13,10 +16,6 @@ const { openStatus } = storeToRefs(menuStore);
       }"
     >
       <slot />
-
-      <div class="fixed bottom-2 w-full">
-        <BottomTab></BottomTab>
-      </div>
     </div>
   </div>
 </template>
