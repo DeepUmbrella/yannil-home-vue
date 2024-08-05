@@ -1,169 +1,92 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useGlobalStore } from '~/stores';
+
+const globalStore = useGlobalStore();
+const { scrollPosition } = storeToRefs(globalStore);
+
+const headerStyle = computed(() => {
+  let color = `rgba(0, 0, 0, ${scrollPosition.value > 0.5 && scrollPosition.value < 1 ? 2 * scrollPosition.value - 1 : 0})`;
+  if (scrollPosition.value >= 1) {
+    color = `rgb(0 , 0, 0)`;
+  }
+  return {
+    'background-image': `linear-gradient(0deg,rgba(0, 0, 0, 0),${color})`,
+  };
+});
+
+const showShadow = computed(() => {
+  return scrollPosition.value > 0.5;
+});
+
+const headerMask = computed(() => {
+  const masks = [
+    {
+      mask: `linear-gradient(rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 12.5%)`,
+    },
+    {
+      mask: `linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgba(0, 0, 0, 0) 25%)`,
+    },
+    {
+      mask: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0) 37.5%)`,
+    },
+    {
+      mask: `linear-gradient(rgba(0, 0, 0, 0) 12.5%, rgb(0, 0, 0) 25%, rgb(0, 0, 0) 37.5%, rgba(0, 0, 0, 0) 50%)`,
+    },
+    {
+      mask: `linear-gradient(rgba(0, 0, 0, 0) 25%, rgb(0, 0, 0) 37.5%, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0) 62.5%)`,
+    },
+    {
+      mask: `linear-gradient(rgba(0, 0, 0, 0) 37.5%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 62.5%, rgba(0, 0, 0, 0) 75%)`,
+    },
+    {
+      mask: `linear-gradient(rgba(0, 0, 0, 0) 50%, rgb(0, 0, 0) 62.5%, rgb(0, 0, 0) 75%, rgba(0, 0, 0, 0) 87.5%)`,
+    },
+    {
+      mask: `linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0) 62.5%,
+                    rgba(0, 0, 0, 1) 75%,
+                    rgba(0, 0, 0, 1) 87.5%,
+                    rgba(0, 0, 0, 0) 100%
+                  )`,
+    },
+  ];
+  return masks.map((item, index) => {
+    let blurPx = 2 * scrollPosition.value - 1;
+    blurPx =
+      scrollPosition.value < 0.5 ? 0 : scrollPosition.value > 1 ? 1 : blurPx;
+    blurPx *= Math.pow(2, 6 - index);
+
+    return {
+      ...item,
+      backdropFilter: `blur(${blurPx}px)`,
+      webkitBackdropFilter: `blur(${blurPx}px)`,
+      zIndex: index + 1,
+    };
+  });
+});
+</script>
 <template>
   <div
-    class="header pointer-events-none fixed top-0 left-0 right-0 z-[1000] bg-gradient-to-r"
-    style="--tw-gradient-stops: rgba(0, 0, 0), rgba(0, 0, 0, 0.98)"
+    class="header pointer-events-none fixed top-0 left-0 right-0 z-[1000]"
+    :style="headerStyle"
   >
     <div class="flex justify-between p-[32px]">
-      <!-- <div
-        class="linear-blur"
-        style="
-          pointer-events: none;
-          transform-origin: top;
-          display: none;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 160%;
-          z-index: -1;
-          background-image: linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0),
-            rgba(0, 0, 0, 0)
-          );
-        "
+      <div
+        v-show="showShadow"
+        class="linear-blur absolute top-0 left-0 -z-1 pointer-events-none w-full h-[160%] origin-top"
+        :style="headerStyle"
       >
-        <div
-          style="
-            position: relative;
-            z-index: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-              to bottom,
-              rgb(from transparent r g b / alpha) 0%,
-              rgb(from transparent r g b / 0%) 100%
-            );
-          "
-        >
+        <div>
           <div
-            style="
-              position: absolute;
-              z-index: 1;
-              inset: 0;
-              mask: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 1) 0%,
-                rgba(0, 0, 0, 0) 12.5%
-              );
-              backdrop-filter: blur(0px);
-              -webkit-backdrop-filter: blur(0px);
-            "
-          ></div>
-          <div
-            style="
-              position: absolute;
-              z-index: 2;
-              inset: 0;
-              mask: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 1) 0%,
-                rgba(0, 0, 0, 1) 12.5%,
-                rgba(0, 0, 0, 0) 25%
-              );
-              backdrop-filter: blur(0px);
-              -webkit-backdrop-filter: blur(0px);
-            "
-          ></div>
-          <div
-            style="
-              position: absolute;
-              z-index: 2;
-              inset: 0;
-              mask: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0) 0%,
-                rgba(0, 0, 0, 1) 12.5%,
-                rgba(0, 0, 0, 1) 25%,
-                rgba(0, 0, 0, 0) 37.5%
-              );
-              backdrop-filter: blur(0px);
-              -webkit-backdrop-filter: blur(0px);
-            "
-          ></div>
-          <div
-            style="
-              position: absolute;
-              z-index: 3;
-              inset: 0;
-              mask: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0) 12.5%,
-                rgba(0, 0, 0, 1) 25%,
-                rgba(0, 0, 0, 1) 37.5%,
-                rgba(0, 0, 0, 0) 50%
-              );
-              backdrop-filter: blur(0px);
-              -webkit-backdrop-filter: blur(0px);
-            "
-          ></div>
-          <div
-            style="
-              position: absolute;
-              z-index: 4;
-              inset: 0;
-              mask: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0) 25%,
-                rgba(0, 0, 0, 1) 37.5%,
-                rgba(0, 0, 0, 1) 50%,
-                rgba(0, 0, 0, 0) 62.5%
-              );
-              backdrop-filter: blur(0px);
-              -webkit-backdrop-filter: blur(0px);
-            "
-          ></div>
-          <div
-            style="
-              position: absolute;
-              z-index: 5;
-              inset: 0;
-              mask: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0) 37.5%,
-                rgba(0, 0, 0, 1) 50%,
-                rgba(0, 0, 0, 1) 62.5%,
-                rgba(0, 0, 0, 0) 75%
-              );
-              backdrop-filter: blur(0px);
-              -webkit-backdrop-filter: blur(0px);
-            "
-          ></div>
-          <div
-            style="
-              position: absolute;
-              z-index: 6;
-              inset: 0;
-              mask: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0) 50%,
-                rgba(0, 0, 0, 1) 62.5%,
-                rgba(0, 0, 0, 1) 75%,
-                rgba(0, 0, 0, 0) 87.5%
-              );
-              backdrop-filter: blur(0px);
-              -webkit-backdrop-filter: blur(0px);
-            "
-          ></div>
-          <div
-            style="
-              position: absolute;
-              z-index: 7;
-              inset: 0;
-              mask: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0) 62.5%,
-                rgba(0, 0, 0, 1) 75%,
-                rgba(0, 0, 0, 1) 87.5%,
-                rgba(0, 0, 0, 0) 100%
-              );
-              backdrop-filter: blur(0.5px);
-              -webkit-backdrop-filter: blur(0.5px);
-            "
+            v-for="item in headerMask"
+            :key="item.mask"
+            class="absolute inset-0 z-[1]"
+            :style="item"
           ></div>
         </div>
-      </div> -->
+      </div>
       <div
         class="pointer-events-none relative z-[100] flex gap-8 font-medium items-center justify-between w-full"
       >

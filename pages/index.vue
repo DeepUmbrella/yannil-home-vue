@@ -3,6 +3,11 @@ definePageMeta({
   title: 'yannil - 亚尼尔',
   description: '',
 });
+
+import { useGlobalStore } from '~/stores';
+
+const globalStore = useGlobalStore();
+const { scrollPosition } = storeToRefs(globalStore);
 </script>
 
 <template>
@@ -10,28 +15,58 @@ definePageMeta({
     <section class="relative min-h-screen">
       <div
         class="absolute inset-0 flex justify-center items-center select-none overflow-hidden"
-      ></div>
-      <div
-        style="
-          position: absolute;
-          inset: 0;
-          overflow: hidden;
-          padding: 50px;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          align-items: center;
-          pointer-events: none;
-        "
       >
-        <div class="flex flex-col gap-10 items-center text-center">
+        <div class="max-sm:hidden">
+          <div class="flex items-center justify-center max-sm:scale-50">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1080"
+              height="1080"
+              fill="none"
+              viewBox="0 0 1080 1080"
+              class="absolute animate-heropulse drop-shadow-shineStar"
+              style="
+                blur: 0;
+                opacity: 1;
+                shadow-spread: 3.399999999999991px;
+                shadow-blur: 9.09999999999999px;
+                shadow-opacity: 0.33020000000000005px;
+                transform: translateY(calc(0px)) scale(0.7299999999999998)
+                  rotate(0deg);
+              "
+            >
+              <path
+                stroke="#fff"
+                stroke-linejoin="round"
+                stroke-width="3"
+                d="M539.294 253.338V537l248.919 146.703-248.557 143.506-248.489-143.546-.069-286.968 248.196-143.357zM292 683l247-145.5"
+                pathLength="1"
+                stroke-dashoffset="0px"
+                stroke-dasharray="1px 1px"
+              ></path>
+              <path
+                stroke="#fff"
+                stroke-linejoin="round"
+                stroke-width="3"
+                d="M539.5 828V537L291 396.5"
+                pathLength="1"
+                stroke-dashoffset="0px"
+                stroke-dasharray="1px 1px"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-0 overflow-hidden flex justify-end flex-col p-[50px] items-center user-select-none point-events-none"
+      >
+        <div class="flex flex-col gap-[40px] items-center text-center">
           <svg
             stroke="currentColor"
             fill="currentColor"
             stroke-width="0"
             viewBox="0 0 24 24"
-            class="HeroSection_pulseAnimation__1DIY4"
-            style="font-size: 40px"
+            class="animate-heropulse text-[40px]"
             height="1em"
             width="1em"
             xmlns="http://www.w3.org/2000/svg"
@@ -43,5 +78,33 @@ definePageMeta({
         </div>
       </div>
     </section>
+    <section
+      class="relative min-h-screen flex flex-col items-center"
+      style="contain: layout"
+    >
+      <div
+        class="relative px-8 w-full flex justify-center items-center flex-col text-white mx-[125px] my-auto max-w-[739px]"
+      >
+        <div
+          :style="{ opacity: 0.3 + scrollPosition * 0.7 }"
+          class="absolute mt-0 z-0 h-[180%] min-w-[100%] point-events-none blur-[100px] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
+        >
+          <div
+            :style="{
+              '--tw-scale-x': 1.5 - (scrollPosition >= 1 ? 1 : scrollPosition),
+              '--tw-scale-y': 1.5 - (scrollPosition >= 1 ? 1 : scrollPosition),
+            }"
+            class="transition-all duration-500 delay-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute min-w-[1000px] rounded-full w-screen h-screen overflow-hidden"
+          >
+            <div
+              class="absolute top-1/2 w-screen h-[100vw] -translate-x-1/2 -translate-y-1/2 left-1/2 animate-spincolor bg-spinningGradient"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="relative min-h-screen"></section>
+    <section class="relative min-h-screen"></section>
+    <section class="relative min-h-screen"></section>
   </main>
 </template>
