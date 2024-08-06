@@ -25,6 +25,7 @@ export default defineNuxtConfig({
   modules: [
     // ...
     '@pinia/nuxt',
+    'nuxt-lodash',
   ],
   alias: {
     '@hooks/*': './hooks/*',

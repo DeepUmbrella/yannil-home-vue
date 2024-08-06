@@ -6,8 +6,82 @@ definePageMeta({
 
 import { useGlobalStore } from '~/stores';
 
+import type { YlCardType } from '~/components/YlCard/index.vue';
+
+import { storeToRefs } from 'pinia';
+
 const globalStore = useGlobalStore();
 const { scrollPosition } = storeToRefs(globalStore);
+
+const cardData1: Array<YlCardType> = [
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/400/200?random=1',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/550/300?random=1',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/550/300?random=2',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/350/150?random=3',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/450/250?random=1',
+  },
+];
+
+const cardData2: Array<YlCardType> = [
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/400/150?random=121',
+  },
+
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/350/300?random=122',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/550/300?random=123',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/550/300?random=124',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/450/250?random=125',
+  },
+];
+const cardData3: Array<YlCardType> = [
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/400/200?random=112',
+  },
+
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/350/150?random=113',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/550/300?random=114',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/550/300?random=115',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/450/250?random=116',
+  },
+];
 </script>
 
 <template>
@@ -25,15 +99,6 @@ const { scrollPosition } = storeToRefs(globalStore);
               fill="none"
               viewBox="0 0 1080 1080"
               class="absolute animate-heropulse drop-shadow-shineStar"
-              style="
-                blur: 0;
-                opacity: 1;
-                shadow-spread: 3.399999999999991px;
-                shadow-blur: 9.09999999999999px;
-                shadow-opacity: 0.33020000000000005px;
-                transform: translateY(calc(0px)) scale(0.7299999999999998)
-                  rotate(0deg);
-              "
             >
               <path
                 stroke="#fff"
@@ -41,7 +106,7 @@ const { scrollPosition } = storeToRefs(globalStore);
                 stroke-width="3"
                 d="M539.294 253.338V537l248.919 146.703-248.557 143.506-248.489-143.546-.069-286.968 248.196-143.357zM292 683l247-145.5"
                 pathLength="1"
-                stroke-dashoffset="0px"
+                stroke-dashoffset="0"
                 stroke-dasharray="1px 1px"
               ></path>
               <path
@@ -54,6 +119,7 @@ const { scrollPosition } = storeToRefs(globalStore);
                 stroke-dasharray="1px 1px"
               ></path>
             </svg>
+            <div class="relative"></div>
           </div>
         </div>
       </div>
@@ -103,8 +169,53 @@ const { scrollPosition } = storeToRefs(globalStore);
         </div>
       </div>
     </section>
-    <section class="relative min-h-screen"></section>
-    <section class="relative min-h-screen"></section>
-    <section class="relative min-h-screen"></section>
+    <section class="relative min-h-screen p-4">
+      <YlCardGroup :card-data="cardData1" :title-index="1">
+        <div
+          style="
+            font-weight: 400;
+            line-height: 99%;
+            color: #fff;
+            font-size: max(min(48px, 10vw), 18px);
+            letter-spacing: -2.4px;
+            margin-bottom: 42px;
+          "
+        >
+          Hello,I'm Yannil
+        </div>
+      </YlCardGroup>
+    </section>
+    <section class="relative min-h-screen p-4">
+      <YlCardGroup :card-data="cardData2" :title-index="10">
+        <div
+          style="
+            font-weight: 400;
+            line-height: 99%;
+            color: #fff;
+            font-size: max(min(48px, 10vw), 18px);
+            letter-spacing: -2.4px;
+            margin-bottom: 42px;
+          "
+        >
+          Hello,I'm Yannil
+        </div>
+      </YlCardGroup>
+    </section>
+    <section class="relative min-h-screen p-4">
+      <YlCardGroup :card-data="cardData3" :title-index="4">
+        <div
+          style="
+            font-weight: 400;
+            line-height: 99%;
+            color: #fff;
+            font-size: max(min(48px, 10vw), 18px);
+            letter-spacing: -2.4px;
+            margin-bottom: 42px;
+          "
+        >
+          Hello,I'm Yannil
+        </div>
+      </YlCardGroup>
+    </section>
   </main>
 </template>
