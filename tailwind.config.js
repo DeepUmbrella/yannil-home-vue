@@ -10,6 +10,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        yan: 'Yannil, sans-serif',
+        yancs: 'YannilCS  sans-serif',
+      },
       backgroundImage: {
         'device-girl': "url('/assets/img/bg/device-girl.webp')",
       },

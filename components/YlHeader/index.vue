@@ -126,9 +126,9 @@ const headerMask = computed(() => {
           <a
             class="rounded-full bg-white hover:bg-opacity-90 transition-colors text-black px-4 py-2"
             style="pointer-events: auto; opacity: 1"
-            href="/dream-machine/creations"
-            >Try Now</a
-          >
+            href="/login"
+            >Sign In
+          </a>
         </nav>
       </div>
     </div>

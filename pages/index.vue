@@ -92,6 +92,14 @@ const cardData3: Array<YlCardType> = [
       >
         <div class="max-sm:hidden">
           <div class="flex items-center justify-center max-sm:scale-50">
+            <div class="absolute top-10">
+              <h1
+                class="h-[200px] font-yancs leading-none flex justify-between font-bold"
+              >
+                <em class="text-[120px] self-start">YAN</em>
+                <em class="text-[60px] self-end">OF XiaoZhai</em>
+              </h1>
+            </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1080"
@@ -165,6 +173,36 @@ const cardData3: Array<YlCardType> = [
             <div
               class="absolute top-1/2 w-screen h-[100vw] -translate-x-1/2 -translate-y-1/2 left-1/2 animate-spincolor bg-spinningGradient"
             ></div>
+          </div>
+        </div>
+        <div class="w-full max-w-4xl mt-[24px] relative">
+          <h1
+            class="text-[72px] max-sm:text-[52px] leading-[99%] tracking-[-3.6px] text-red relative lg:left-[-145px]"
+          >
+            Yan Family Bay <br />of
+            <em class="font-yancs italic">Xiaozhai Bamiao Township</em>
+          </h1>
+          <div
+            class="relative lg:left-[160px] xl:left-[204px] mt-[71px] lg:mt-[30px]"
+          >
+            <p
+              class="text-[28px] font-medium leading-[130%] tracking-[0] mb-[21px]"
+            >
+              In the 1990s, during the famine, my parents moved their family to
+              a bay to open up wasteland and survive, so it was named Yan Family
+              Bay!
+            </p>
+            <p
+              class="text-[20px] text-white/70 leading-[130%] tracking-[-0.2px]"
+            >
+              Named Yan Family Bay, stands as a testament to their perseverance
+              and resilience. It symbolizes the Yan family's journey of survival
+              and their contribution to turning a desolate area into a thriving
+              community. The name Yan Family Bay not only honors the family's
+              legacy but also serves as an inspiration to others about the power
+              of human spirit and tenacity in the face of adversity.
+            </p>
+            <YlButtonNew class="mt-[40px]" text="Yan Family Bay" href="/" />
           </div>
         </div>
       </div>
