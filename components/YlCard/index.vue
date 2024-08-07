@@ -1,37 +1,67 @@
 <script setup lang="ts">
+import { vCanplay } from '~/directives/canplay';
+import { ref } from 'vue';
 export interface YlCardType {
   title: string;
   content?: string;
   target?: string;
   imgUrl?: string;
   videoUrl?: string;
-  cardType?: 'image' | 'video';
   customerLayout?: string;
+  hideTitle?: boolean;
+  width?: string;
+  height?: string;
 }
 
 const props = withDefaults(defineProps<YlCardType>(), {
   title: '标题',
   content: '',
   imgUrl: 'https://picsum.photos/200/300?random=1',
-  videoUrl:
-    'https://cdn.pixabay.com/video/2023/10/07/183960-872226574_large.mp4',
+  videoUrl: '',
   cardSize: 'medium',
   cardType: 'image',
   target: '',
   customerLayout: '',
+  width: '',
+  hideTitle: false,
+  height: '',
 });
+
+const canplay = ref(false);
+const updateCanplay = (newCanplayValue: boolean) => {
+  canplay.value = newCanplayValue;
+};
 </script>
 
 <template>
   <div class="relative size-fit">
-    <div class="overflow-hidden rounded-xl" :class="customerLayout">
-      <picture class="size-full object-cover" v-if="cardType === 'image'">
-        <img :src="imgUrl" :alt="title" />
+    <div
+      class="overflow-hidden rounded-xl"
+      :class="customerLayout"
+      :style="{
+        width,
+        height,
+      }"
+    >
+      <picture>
+        <img
+          v-if="imgUrl"
+          :style="{
+            opacity: canplay ? 0 : 1,
+          }"
+          class="size-full object-cover"
+          :src="imgUrl"
+          :alt="title"
+        />
       </picture>
       <video
+        v-if="videoUrl"
+        v-canplay="updateCanplay"
         class="size-full"
-        v-if="cardType === 'video'"
         :poster="imgUrl"
+        :style="{
+          opacity: canplay ? 1 : 0,
+        }"
         loop
         autoplay
         playsinline
@@ -43,6 +73,7 @@ const props = withDefaults(defineProps<YlCardType>(), {
     </div>
 
     <div
+      v-if="!hideTitle"
       class="absolute bottom-0 left-0 black/30 py-[1px] px-[8px] m-[10px] text-sm text-white/60 rounded backdrop-blur-md"
     >
       <a

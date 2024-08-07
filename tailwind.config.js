@@ -17,6 +17,9 @@ export default {
       backgroundImage: {
         'device-girl': "url('/assets/img/bg/device-girl.webp')",
       },
+      fontSize: {
+        yanfooter: 'min(218px, 30vw)',
+      },
       spacing: {
         80: '80px',
         1024: '100px',

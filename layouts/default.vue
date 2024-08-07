@@ -6,8 +6,8 @@ const { openStatus } = storeToRefs(menuStore);
 
 <template>
   <div class="text-white text-opacity-80 h-full">
-    <YlHeader></YlHeader>
-
+    <YlHeader />
     <slot />
+    <YlFooter />
   </div>
 </template>

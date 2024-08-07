@@ -5,83 +5,17 @@ definePageMeta({
 });
 
 import { useGlobalStore } from '~/stores';
-
-import type { YlCardType } from '~/components/YlCard/index.vue';
-
 import { storeToRefs } from 'pinia';
-
+import {
+  cardData1,
+  cardData2,
+  cardData3,
+  cardData4,
+  cardDataOneRow,
+  cardDataThreebox,
+} from '~/mock/homedata';
 const globalStore = useGlobalStore();
 const { scrollPosition } = storeToRefs(globalStore);
-
-const cardData1: Array<YlCardType> = [
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/400/200?random=1',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/550/300?random=1',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/550/300?random=2',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/350/150?random=3',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/450/250?random=1',
-  },
-];
-
-const cardData2: Array<YlCardType> = [
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/400/150?random=121',
-  },
-
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/350/300?random=122',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/550/300?random=123',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/550/300?random=124',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/450/250?random=125',
-  },
-];
-const cardData3: Array<YlCardType> = [
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/400/200?random=112',
-  },
-
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/350/150?random=113',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/550/300?random=114',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/550/300?random=115',
-  },
-  {
-    title: 'Lorem Picsum',
-    imgUrl: 'https://picsum.photos/450/250?random=116',
-  },
-];
 </script>
 
 <template>
@@ -127,7 +61,6 @@ const cardData3: Array<YlCardType> = [
                 stroke-dasharray="1px 1px"
               ></path>
             </svg>
-            <div class="relative"></div>
           </div>
         </div>
       </div>
@@ -207,7 +140,7 @@ const cardData3: Array<YlCardType> = [
         </div>
       </div>
     </section>
-    <section class="relative min-h-screen p-4">
+    <section class="relative min-h-screen px-[32px] py-[128px]">
       <YlCardGroup :card-data="cardData1" :title-index="1">
         <div
           style="
@@ -223,7 +156,23 @@ const cardData3: Array<YlCardType> = [
         </div>
       </YlCardGroup>
     </section>
-    <section class="relative min-h-screen p-4">
+    <section class="relative min-h-screen px-[32px] py-[128px]">
+      <YlCardGroup :card-data="cardData4" :title-index="2">
+        <div
+          style="
+            font-weight: 400;
+            line-height: 99%;
+            color: #fff;
+            font-size: max(min(48px, 10vw), 18px);
+            letter-spacing: -2.4px;
+            margin-bottom: 42px;
+          "
+        >
+          Hello,I'm Yannil
+        </div>
+      </YlCardGroup>
+    </section>
+    <section class="relative min-h-screen px-[32px] py-[128px]">
       <YlCardGroup :card-data="cardData2" :title-index="10">
         <div
           style="
@@ -239,7 +188,7 @@ const cardData3: Array<YlCardType> = [
         </div>
       </YlCardGroup>
     </section>
-    <section class="relative min-h-screen p-4">
+    <section class="relative min-h-screen px-[32px] py-[128px]">
       <YlCardGroup :card-data="cardData3" :title-index="4">
         <div
           style="
@@ -254,6 +203,22 @@ const cardData3: Array<YlCardType> = [
           Hello,I'm Yannil
         </div>
       </YlCardGroup>
+    </section>
+    <section
+      class="relative flex items-center justify-center min-h-screen py-[64px]"
+    >
+      <YlCardGroupOneRow
+        title="Current<br>Limitations"
+        :card-data="cardDataOneRow"
+      />
+    </section>
+    <section
+      class="relative flex items-center justify-center min-h-screen py-[64px]"
+    >
+      <YlCardGroupThreeBox
+        title="Current<br>Limitations"
+        :card-data="cardDataThreebox"
+      />
     </section>
   </main>
 </template>

@@ -10,7 +10,7 @@ interface YlCardGroup {
 }
 
 const props = withDefaults(defineProps<YlCardGroup>(), {
-  cardData: [] as YlCardType[],
+  cardData: () => [] as YlCardType[],
   title: 'Title',
   titleIndex: 1,
 });
@@ -61,10 +61,10 @@ const chunk = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-.card:first-child {
-  align-items: flex-end;
-}
 .card:last-child {
   align-items: flex-start;
+}
+.card:first-child {
+  align-items: flex-end;
 }
 </style>
