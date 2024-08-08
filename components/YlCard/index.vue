@@ -34,7 +34,7 @@ const updateCanplay = (newCanplayValue: boolean) => {
 </script>
 
 <template>
-  <div class="relative size-fit">
+  <div class="yl-card relative size-fit">
     <div
       class="overflow-hidden rounded-xl"
       :class="customerLayout"

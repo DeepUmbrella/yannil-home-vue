@@ -13,6 +13,7 @@ import {
   cardData4,
   cardDataOneRow,
   cardDataThreebox,
+  swiperdata,
 } from '~/mock/homedata';
 const globalStore = useGlobalStore();
 const { scrollPosition } = storeToRefs(globalStore);
@@ -30,8 +31,10 @@ const { scrollPosition } = storeToRefs(globalStore);
               <h1
                 class="h-[200px] font-yancs leading-none flex justify-between font-bold"
               >
-                <em class="text-[120px] self-start">YAN</em>
-                <em class="text-[60px] self-end">OF XiaoZhai</em>
+                <em class="text-[120px] bounce-in-left self-start">YAN</em>
+                <em class="text-[60px] bounce-in-right self-end"
+                  >OF XiaoZhai</em
+                >
               </h1>
             </div>
             <svg
@@ -61,6 +64,7 @@ const { scrollPosition } = storeToRefs(globalStore);
                 stroke-dasharray="1px 1px"
               ></path>
             </svg>
+            <YlLoopSwiper :card-data="swiperdata" />
           </div>
         </div>
       </div>

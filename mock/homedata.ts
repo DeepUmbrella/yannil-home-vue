@@ -1,4 +1,5 @@
 import type { YlCardType } from '~/components/YlCard/index.vue';
+
 const cardData1: Array<YlCardType> = [
   {
     title: 'Lorem Picsum',
@@ -148,6 +149,36 @@ const cardDataThreebox: Array<YlCardType> = [
     imgUrl: 'https://picsum.photos/550/300?random=114',
   },
 ];
+const swiperdata: Array<YlCardType> = [
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/1600/900?random=112',
+  },
+
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/1600/900?random=113',
+  },
+
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/1600/900?random=114',
+  },
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/1600/900?random=112',
+  },
+
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/1600/900?random=113',
+  },
+
+  {
+    title: 'Lorem Picsum',
+    imgUrl: 'https://picsum.photos/1600/900?random=114',
+  },
+];
 
 export {
   cardData1,
@@ -156,4 +187,5 @@ export {
   cardData4,
   cardDataOneRow,
   cardDataThreebox,
+  swiperdata,
 };
