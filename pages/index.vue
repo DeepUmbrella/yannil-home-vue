@@ -26,46 +26,30 @@ const { scrollPosition } = storeToRefs(globalStore);
         class="absolute inset-0 flex justify-center items-center select-none overflow-hidden"
       >
         <div class="max-sm:hidden">
-          <div class="flex items-center justify-center max-sm:scale-50">
-            <div class="absolute top-10">
-              <h1
-                class="h-[200px] font-yancs leading-none flex justify-between font-bold"
-              >
-                <em class="text-[120px] bounce-in-left self-start">YAN</em>
-                <em class="text-[60px] bounce-in-right self-end"
-                  >OF XiaoZhai</em
+          <YlWait class="flex items-center justify-center max-sm:scale-50">
+            <template v-slot="{ isWaiting }">
+              <div class="absolute top-10">
+                <h1
+                  class="h-[200px] text-white font-yancs leading-none flex justify-between font-bold"
                 >
-              </h1>
-            </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1080"
-              height="1080"
-              fill="none"
-              viewBox="0 0 1080 1080"
-              class="absolute animate-heropulse drop-shadow-shineStar"
-            >
-              <path
-                stroke="#fff"
-                stroke-linejoin="round"
-                stroke-width="3"
-                d="M539.294 253.338V537l248.919 146.703-248.557 143.506-248.489-143.546-.069-286.968 248.196-143.357zM292 683l247-145.5"
-                pathLength="1"
-                stroke-dashoffset="0"
-                stroke-dasharray="1px 1px"
-              ></path>
-              <path
-                stroke="#fff"
-                stroke-linejoin="round"
-                stroke-width="3"
-                d="M539.5 828V537L291 396.5"
-                pathLength="1"
-                stroke-dashoffset="0px"
-                stroke-dasharray="1px 1px"
-              ></path>
-            </svg>
-            <YlLoopSwiper :card-data="swiperdata" />
-          </div>
+                  <em
+                    class="text-[120px] self-start"
+                    :class="[isWaiting ? 'opacity-0' : 'bounce-in-left']"
+                    >YAN</em
+                  >
+                  <em
+                    class="text-[60px] self-end"
+                    :class="[isWaiting ? 'opacity-0' : 'bounce-in-right']"
+                    >OF XiaoZhai</em
+                  >
+                </h1>
+              </div>
+              <YlLoopSwiper
+                :class="[!isWaiting ? 'scale-in-center' : 'opacity-0']"
+                :card-data="swiperdata"
+              />
+            </template>
+          </YlWait>
         </div>
       </div>
       <div
@@ -204,7 +188,7 @@ const { scrollPosition } = storeToRefs(globalStore);
             margin-bottom: 42px;
           "
         >
-          Hello,I'm Yannil
+          Hello,I'm Yannil 1
         </div>
       </YlCardGroup>
     </section>
