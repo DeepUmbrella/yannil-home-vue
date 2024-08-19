@@ -2,7 +2,7 @@
 import { vCanplay } from '~/directives/canplay';
 import { ref } from 'vue';
 export interface YlCardType {
-  title: string;
+  title?: string;
   content?: string;
   target?: string;
   imgUrl?: string;

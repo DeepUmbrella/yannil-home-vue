@@ -51,4 +51,4 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/yannil-home:latest
             docker stop yannil-home || true
             docker rm yannil-home || true
-            docker run -d --name yannil-home -p 80:3000 ${{ secrets.DOCKER_USERNAME }}/yannil-home:latest
+            docker run -d --name yannil-home -p 80:3000 --network shared_network ${{ secrets.DOCKER_USERNAME }}/yannil-home:latest
